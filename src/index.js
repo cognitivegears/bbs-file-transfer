@@ -1,5 +1,5 @@
-const VolumeDriverBuffer = require('./volumeDriver/VolumeDriverBuffer');
-const VolumeDriverFile = require('./volumeDriver/VolumeDriverFile');
+const VolumeDriverBuffer = require('./fileTransfer/VolumeDriverBuffer');
+const VolumeDriverFile = require('./fileTransfer/XModem');
 
 /**
  * Creates a buffer driver synchronously.
