@@ -10,5 +10,4 @@ describe("XModem", () => {
 	it("should always pass", () => {
 		expect(true).toBe(true);
 	});
-
 });
