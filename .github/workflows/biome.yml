@@ -1,0 +1,32 @@
+name: Biome
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  biome:
+    name: Run Biome scanning
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      security-events: write
+      actions: read
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Install Biome
+        run: npm install @biomejs/biome
+
+      - name: Run Biome
+        run: npx biome format . --write
+        continue-on-error: true
+
+      - name: Upload analysis results to GitHub
+        uses: github/codeql-action/upload-sarif@v3
+        with:
+          sarif_file: biome-results.sarif
+          wait-for-processing: true
