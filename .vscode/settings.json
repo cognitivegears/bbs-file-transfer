@@ -1,14 +1,13 @@
 {
-    "eslint.enable": true,
-    "eslint.lintTask.enable": true,
-    "eslint.lintTask.options": "-c .eslintrc.json --ignore-path .eslintignore .",
-    "eslint.run": "onType",
-    "eslint.format.enable": true,
+    "biome.enable": true,
+    "biome.lintTask.enable": true,
+    "biome.lintTask.options": "-c .biomerc.json --ignore-path .biomeignore .",
+    "biome.run": "onType",
+    "biome.format.enable": true,
     "[javascript]": {
-        "editor.defaultFormatter": "dbaeumer.vscode-eslint",
+        "editor.defaultFormatter": "biome",
         "editor.codeActionsOnSave": {
-            "source.fixAll.eslint": "explicit"
+            "source.fixAll.biome": "explicit"
         },
     }
-
 }
