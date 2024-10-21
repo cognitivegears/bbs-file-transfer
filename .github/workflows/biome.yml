@@ -1,32 +1,17 @@
 name: Biome
 
-on:
-  push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
-
+on: [pull_request]
 jobs:
   biome:
-    name: Run Biome scanning
+    name: runner / Biome
     runs-on: ubuntu-latest
     permissions:
       contents: read
-      security-events: write
-      actions: read
+      pull-requests: write
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-
-      - name: Install Biome
-        run: npm install @biomejs/biome
-
-      - name: Run Biome
-        run: npx biome format . --write
-        continue-on-error: true
-
-      - name: Upload analysis results to GitHub
-        uses: github/codeql-action/upload-sarif@v3
+      - uses: actions/checkout@v4
+      - uses: mongolyy/reviewdog-action-biome@v1
         with:
-          sarif_file: biome-results.sarif
-          wait-for-processing: true
+          github_token: ${{ secrets.github_token }}
+          reporter: github-pr-review
+          fail_on_error: true
